@@ -17,7 +17,11 @@ import {
   MdBarChart,
   MdPerson,
   MdLock,
+  MdOutlineInventory2,
+  MdOutlinePeopleAlt,
 } from "react-icons/md";
+
+const EmptyPage = () => <div></div>;
 
 const routes = [
   {
@@ -28,7 +32,7 @@ const routes = [
     component: <MainDashboard />,
   },
   {
-    name: "NFT Marketplace",
+    name: "Marketing",
     layout: "/admin",
     path: "nft-marketplace",
     icon: <MdOutlineShoppingCart className="h-6 w-6" />,
@@ -36,11 +40,25 @@ const routes = [
     secondary: true,
   },
   {
-    name: "Data Tables",
+    name: "Sales Info",
     layout: "/admin",
     icon: <MdBarChart className="h-6 w-6" />,
     path: "data-tables",
     component: <DataTables />,
+  },
+  {
+    name: "Invevtory",
+    layout: "/rtl",
+    path: "rtl",
+    icon: <MdOutlineInventory2 className="h-6 w-6" />,
+    component: <RTLDefault />,
+  },
+  {
+    name: "Hiring",
+    layout: "/rtl",
+    path: "rtl",
+    icon: <MdOutlinePeopleAlt className="h-6 w-6" />,
+    component: <RTLDefault />,
   },
   {
     name: "Profile",
@@ -55,13 +73,6 @@ const routes = [
     path: "sign-in",
     icon: <MdLock className="h-6 w-6" />,
     component: <SignIn />,
-  },
-  {
-    name: "RTL Admin",
-    layout: "/rtl",
-    path: "rtl",
-    icon: <MdHome className="h-6 w-6" />,
-    component: <RTLDefault />,
   },
 ];
 export default routes;
