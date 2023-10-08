@@ -47,7 +47,7 @@ const routes = [
     component: <DataTables />,
   },
   {
-    name: "Invevtory",
+    name: "Inventory",
     layout: "/rtl",
     path: "rtl",
     icon: <MdOutlineInventory2 className="h-6 w-6" />,
