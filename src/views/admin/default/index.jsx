@@ -55,11 +55,11 @@ const Dashboard = () => {
       </div>
 
       <h1 className="mt-5 ml-4 text-xl font-bold text-fall-50 ">Marketing</h1>
-      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-4">
+      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-5">
         <div className="xl:col-span-2">
           <PricingStrategyTable />
         </div>
-        <div className="xl:col-span-1">
+        <div className="xl:col-span-2">
           <CampaignIdea
             userQuestion={userQuestion}
             setUserQuestion={setUserQuestion}
