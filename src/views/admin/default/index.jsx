@@ -27,10 +27,10 @@ const Dashboard = () => {
 
   return (
     <div>
-      <div className="mt-8 grid h-20 grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-6">
+      <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-6">
         <Widget
           icon={<MdBarChart className="h-7 w-7 text-fall-600" />}
-          title={"Earninged this month"}
+          title={"Earning this month"}
           subtitle={"$340.5"}
         />
         <Widget
@@ -45,20 +45,21 @@ const Dashboard = () => {
         />
       </div>
 
-      <div className="mt-5 grid grid-cols-4 items-stretch gap-5">
-        <div className="col-span-3 items-stretch">
+      <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-4">
+        <div className="md:col-span-3">
           <Revenue />
         </div>
-        <TopFlavors />
+        <div className="md:col-span-1">
+          <TopFlavors />
+        </div>
       </div>
 
       <h1 className="mt-5 ml-4 text-xl font-bold text-fall-50 ">Marketing</h1>
-      <div className="mt-5 grid grid-cols-8 items-stretch gap-5">
-        <div className="col-span-3">
+      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-4">
+        <div className="xl:col-span-2">
           <PricingStrategyTable />
         </div>
-
-        <div className="col-span-3">
+        <div className="xl:col-span-1">
           <CampaignIdea
             userQuestion={userQuestion}
             setUserQuestion={setUserQuestion}
@@ -66,8 +67,7 @@ const Dashboard = () => {
             answer={answer}
           />
         </div>
-
-        <div className="col-span-2">
+        <div className="xl:col-span-1">
           <MiniCalendar />
         </div>
       </div>
