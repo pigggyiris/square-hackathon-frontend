@@ -19,7 +19,7 @@ const TopFlavors = () => {
   return (
     <Card extra="flex flex-col bg-white w-full rounded-3xl py-6 px-2 text-left">
       <div className="mb-auto flex items-center justify-between px-6">
-        <h2 className="text-lg font-bold text-navy-700 dark:text-white">
+        <h2 className="text-lg font-bold text-gray-900 dark:text-white">
           Top 5 Flavor
         </h2>
       </div>

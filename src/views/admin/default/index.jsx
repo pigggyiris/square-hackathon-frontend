@@ -1,7 +1,7 @@
 import MiniCalendar from "components/calendar/MiniCalendar";
-import TotalSpent from "views/admin/default/components/TotalSpent";
-import PieChartCard from "views/admin/default/components/PieChartCard";
+import Revenue from "views/admin/default/components/Revenue";
 import TopFlavors from "views/admin/default/components/TopFlavors";
+import HiringQuestion from "./components/HiringQuestion";
 
 import { IoPeopleSharp } from "react-icons/io5";
 import { MdBarChart, MdShoppingCart } from "react-icons/md";
@@ -9,19 +9,25 @@ import { MdBarChart, MdShoppingCart } from "react-icons/md";
 import { columnsDataCheck, columnsDataComplex } from "./variables/columnsData";
 
 import Widget from "components/widget/Widget";
-import CheckTable from "views/admin/default/components/CheckTable";
+import { PricingStrategyTable } from "./components/PricingStrategyTable";
 import ComplexTable from "views/admin/default/components/ComplexTable";
-import DailyTraffic from "views/admin/default/components/DailyTraffic";
+import CampaignIdea from "views/admin/default/components/CampaignIdea";
 import TaskCard from "views/admin/default/components/TaskCard";
-import tableDataCheck from "./variables/tableDataCheck.json";
 import tableDataComplex from "./variables/tableDataComplex.json";
+import { searchQuestion } from "./services/hiringService";
+import { useState } from "react";
 
 const Dashboard = () => {
+  const [userQuestion, setUserQuestion] = useState("");
+  const [answer, setAnswer] = useState(null);
+  const handleSearch = async () => {
+    const response = await searchQuestion(userQuestion);
+    setAnswer(response);
+  };
+
   return (
     <div>
-      {/* Card widget */}
-
-      <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-6">
+      <div className="mt-8 grid h-20 grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-6">
         <Widget
           icon={<MdBarChart className="h-7 w-7 text-fall-600" />}
           title={"Earninged this month"}
@@ -39,48 +45,56 @@ const Dashboard = () => {
         />
       </div>
 
-      {/* Charts */}
-
       <div className="mt-5 grid grid-cols-4 items-stretch gap-5">
         <div className="col-span-3 items-stretch">
-          <TotalSpent />
+          <Revenue />
         </div>
         <TopFlavors />
       </div>
 
-      {/* Tables & Charts */}
+      <h1 className="mt-5 ml-4 text-xl font-bold text-fall-50 ">Marketing</h1>
+      <div className="mt-5 grid grid-cols-8 items-stretch gap-5">
+        <div className="col-span-3">
+          <PricingStrategyTable />
+        </div>
 
-      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-2">
-        {/* Check Table */}
-        <div>
-          <CheckTable
-            columnsData={columnsDataCheck}
-            tableData={tableDataCheck}
+        <div className="col-span-3">
+          <CampaignIdea
+            userQuestion={userQuestion}
+            setUserQuestion={setUserQuestion}
+            handleSearch={handleSearch}
+            answer={answer}
           />
         </div>
 
-        {/* Traffic chart & Pie Chart */}
-
-        <div className="grid grid-cols-1 gap-5 rounded-[20px] md:grid-cols-2">
-          <DailyTraffic />
-          <PieChartCard />
+        <div className="col-span-2">
+          <MiniCalendar />
         </div>
+      </div>
 
-        {/* Complex Table , Task & Calendar */}
-
-        <ComplexTable
-          columnsData={columnsDataComplex}
-          tableData={tableDataComplex}
-        />
-
-        {/* Task chart & Calendar */}
-
-        <div className="grid grid-cols-1 gap-5 rounded-[20px] md:grid-cols-2">
+      <h1 className="mt-5 ml-4 text-xl font-bold text-fall-50 ">Inventory</h1>
+      <div className="mt-5 grid grid-cols-6 items-stretch gap-5">
+        <div className="col-span-4">
+          <ComplexTable
+            columnsData={columnsDataComplex}
+            tableData={tableDataComplex}
+          />
+        </div>
+        <div className="col-span-2">
           <TaskCard />
-          <div className="grid grid-cols-1 rounded-[20px]">
-            <MiniCalendar />
-          </div>
         </div>
+      </div>
+
+      {/* Hiring Section */}
+      <h4 className="mt-5 ml-4 text-xl font-bold text-fall-50 ">Hiring</h4>
+
+      <div className="mt-5">
+        <HiringQuestion
+          userQuestion={userQuestion}
+          setUserQuestion={setUserQuestion}
+          handleSearch={handleSearch}
+          answer={answer}
+        />
       </div>
     </div>
   );
