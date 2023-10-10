@@ -17,30 +17,25 @@ const Navbar = (props) => {
       <div className="ml-[6px]">
         <div className="h-6 w-[224px] pt-1">
           <a
-            className="text-sm font-normal text-fall-700 hover:underline dark:text-white dark:hover:text-white"
+            className="text-sm font-normal text-fall-50 hover:underline dark:text-white dark:hover:text-white"
             href=" "
           >
             Pages
-            <span className="mx-1 text-sm text-fall-700 hover:text-fall-700 dark:text-white">
+            <span className="mx-1 text-sm text-fall-50 hover:text-fall-700 dark:text-white">
               {" "}
               /{" "}
             </span>
           </a>
           <Link
-            className="text-sm font-normal capitalize text-fall-700 hover:underline dark:text-white dark:hover:text-white"
+            className="text-sm font-normal capitalize text-fall-50 hover:underline dark:text-white dark:hover:text-white"
             to="#"
           >
             {brandText}
           </Link>
         </div>
-        <p className="shrink text-[33px] capitalize text-fall-900 dark:text-white">
-          <Link
-            to="#"
-            className="font-bold capitalize hover:text-fall-900 dark:hover:text-white"
-          >
-            {brandText}
-          </Link>
-        </p>
+        <div className="shrink text-[33px] font-bold capitalize text-fall-50 dark:text-white">
+          {brandText}
+        </div>
       </div>
 
       <div className="relative mt-[3px] flex h-[61px] w-[355px] flex-grow items-center justify-around gap-2 rounded-full bg-white px-2 py-2 shadow-xl shadow-shadow-500 dark:!bg-fall-800 dark:shadow-none md:w-[365px] md:flex-grow-0 md:gap-1 xl:w-[365px] xl:gap-2">

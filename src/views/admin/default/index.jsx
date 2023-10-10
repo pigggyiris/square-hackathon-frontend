@@ -1,10 +1,10 @@
 import MiniCalendar from "components/calendar/MiniCalendar";
-import WeeklyRevenue from "views/admin/default/components/WeeklyRevenue";
 import TotalSpent from "views/admin/default/components/TotalSpent";
 import PieChartCard from "views/admin/default/components/PieChartCard";
-import { IoMdHome } from "react-icons/io";
-import { IoDocuments } from "react-icons/io5";
-import { MdBarChart, MdDashboard } from "react-icons/md";
+import TopFlavors from "views/admin/default/components/TopFlavors";
+
+import { IoPeopleSharp } from "react-icons/io5";
+import { MdBarChart, MdShoppingCart } from "react-icons/md";
 
 import { columnsDataCheck, columnsDataComplex } from "./variables/columnsData";
 
@@ -21,44 +21,31 @@ const Dashboard = () => {
     <div>
       {/* Card widget */}
 
-      <div className="mt-3 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-6">
+      <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-6">
         <Widget
-          icon={<MdBarChart className="h-7 w-7" />}
-          title={"Earnings"}
+          icon={<MdBarChart className="h-7 w-7 text-fall-600" />}
+          title={"Earninged this month"}
           subtitle={"$340.5"}
         />
         <Widget
-          icon={<IoDocuments className="h-6 w-6" />}
-          title={"Spend this month"}
-          subtitle={"$642.39"}
+          icon={<MdShoppingCart className="h-6 w-6 text-fall-600" />}
+          title={"Sales this month"}
+          subtitle={"1289"}
         />
         <Widget
-          icon={<MdBarChart className="h-7 w-7" />}
-          title={"Sales"}
-          subtitle={"$574.34"}
-        />
-        <Widget
-          icon={<MdDashboard className="h-6 w-6" />}
-          title={"Your Balance"}
-          subtitle={"$1,000"}
-        />
-        <Widget
-          icon={<MdBarChart className="h-7 w-7" />}
-          title={"New Tasks"}
-          subtitle={"145"}
-        />
-        <Widget
-          icon={<IoMdHome className="h-6 w-6" />}
-          title={"Total Projects"}
-          subtitle={"$2433"}
+          icon={<IoPeopleSharp className="h-7 w-7 text-fall-600" />}
+          title={"New clients"}
+          subtitle={"583"}
         />
       </div>
 
       {/* Charts */}
 
-      <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
-        <TotalSpent />
-        <WeeklyRevenue />
+      <div className="mt-5 grid grid-cols-4 items-stretch gap-5">
+        <div className="col-span-3 items-stretch">
+          <TotalSpent />
+        </div>
+        <TopFlavors />
       </div>
 
       {/* Tables & Charts */}
