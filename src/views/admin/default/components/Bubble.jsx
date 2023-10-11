@@ -5,10 +5,13 @@ const Bubble = ({ title, content, color }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="relative flex-grow p-2">
+    <div
+      className="relative flex-grow p-2"
+      onMouseLeave={() => setIsOpen(false)}
+    >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`px-4 py-2 text-white shadow-lg ${color} w-full rounded`}
+        className={`ml-3 flex items-center justify-center rounded-xl px-4 py-2 text-sm text-white shadow-lg hover:bg-opacity-90 ${color} bubble-animation w-full rounded`}
       >
         {title}
       </button>
@@ -21,7 +24,7 @@ const Bubble = ({ title, content, color }) => {
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <div className="absolute left-0 top-0 ml-16 mt-12 w-72 rounded-lg border bg-white p-4 shadow-xl">
+        <div className="absolute left-0 top-[-100%] z-10 ml-16 mt-12 w-72 rounded-lg border bg-white p-4 shadow-xl">
           <p className="text-black">{content}</p>
         </div>
       </Transition>
