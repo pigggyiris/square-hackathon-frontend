@@ -3,15 +3,23 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { TaskForm } from "./TaskForm";
 import { Task } from "./Task";
 import Card from "components/card";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { EditTaskForm } from "./EditTaskForm";
 
 const ITEMS_PER_PAGE = 12;
 
 const TaskCard = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
+    const savedTodos = localStorage.getItem("todos");
+    return savedTodos ? JSON.parse(savedTodos) : [];
+  });
+
   const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = (todo) => {
     setTodos([
