@@ -3,10 +3,12 @@ import UserAvatar from "./UserAvatar";
 
 const HiringPlanOptions = (props) => {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [botResponded, setBotResponded] = useState(false);
 
   const handleOptionClick = (id, handler) => {
     handler();
     setSelectedOption(id);
+    setBotResponded(true);
   };
 
   const options = [
@@ -30,7 +32,10 @@ const HiringPlanOptions = (props) => {
             <button
               key={option.id}
               onClick={() => handleOptionClick(option.id, option.handler)}
-              className="m-2 rounded-full bg-fall-100 py-2 px-4 text-fall-950 hover:bg-fall-400"
+              className={`m-2 rounded-full bg-fall-100 py-2 px-4 text-fall-950 hover:bg-fall-400 ${
+                botResponded ? "cursor-not-allowed" : ""
+              }`}
+              disabled={botResponded}
             >
               {option.text}
             </button>
