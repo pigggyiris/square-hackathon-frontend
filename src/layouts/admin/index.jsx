@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react"
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Navbar from "components/navbar";
 import Sidebar from "components/sidebar";
@@ -11,6 +11,8 @@ export default function Admin(props) {
   const location = useLocation();
   const [open, setOpen] = React.useState(true);
   const [currentRoute, setCurrentRoute] = React.useState("Main Dashboard");
+  const [collapsed, setCollapsed] = useState(true);
+  const sidebarWidth = collapsed ? "8rem" : "16rem";
 
   React.useEffect(() => {
     window.addEventListener("resize", () =>
@@ -60,31 +62,41 @@ export default function Admin(props) {
   document.documentElement.dir = "ltr";
   return (
     <div className="flex h-full w-full">
-      <Sidebar open={open} onClose={() => setOpen(false)} />
+      <Sidebar
+        open={open}
+        onClose={() => setOpen(false)}
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+      />
       {/* Navbar & Main Content */}
-      <div className="h-full w-full bg-fall-960 dark:!bg-navy-900">
-        <div className="sticky top-0 z-50 xl:ml-[241px]">
-          <Navbar
-            onOpenSidenav={() => setOpen(true)}
-            logoText={"Horizon UI Tailwind React"}
-            brandText={currentRoute}
-            secondary={getActiveNavbar(routes)}
-            {...rest}
-          />
+      <div className="h-full w-full bg-fall-150 dark:!bg-navy-900">
+        <div
+          style={{ marginLeft: sidebarWidth }}
+          className="top-0 z-50 flex flex-col items-center md:flex-row"
+        >
+          <div className="w-full flex-none md:w-auto">
+            <Header />
+          </div>
+          <div className="w-full flex-grow md:w-auto">
+            <Navbar
+              onOpenSidenav={() => setOpen(true)}
+              logoText={"Horizon UI Tailwind React"}
+              brandText={currentRoute}
+              secondary={getActiveNavbar(routes)}
+              {...rest}
+            />
+          </div>
         </div>
         {/* Main Content */}
         <main
-          className={`mx-[12px] h-full flex-none transition-all md:pr-2 xl:ml-[313px]`}
+          style={{ marginLeft: sidebarWidth }}
+          className={`mx-[12px] h-full flex-none transition-all md:pr-2`}
         >
           {/* Routes */}
           <div className="h-full">
-            <div>
-              <Header />
-            </div>
             <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-2 md:pr-2">
               <Routes>
                 {getRoutes(routes)}
-
                 <Route
                   path="/"
                   element={<Navigate to="/admin/default" replace />}

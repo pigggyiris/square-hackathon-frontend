@@ -21,7 +21,7 @@ const EmptyPage = () => <div></div>;
 
 const routes = [
   {
-    name: "Main Dashboard",
+    name: "Dashboard",
     layout: "/admin",
     path: "default",
     icon: <MdHome className="h-6 w-6" />,
@@ -35,7 +35,7 @@ const routes = [
     component: <EmptyPage />,
   },
   {
-    name: "Sales Info",
+    name: "Sales",
     layout: "/admin",
     path: "Sales",
     icon: <MdBarChart className="h-6 w-6" />,
@@ -64,11 +64,11 @@ const routes = [
     component: <EmptyPage />,
   },
   {
-    name: "Sign In",
-    layout: "/auth",
-    path: "sign-in",
+    name: "LogOut",
+    layout: "/admin",
+    path: "LogOut",
     icon: <MdLock className="h-6 w-6" />,
-    component: <SignIn />,
+    component: <EmptyPage />,
   },
 ];
 export default routes;
