@@ -2,7 +2,7 @@ import React from "react";
 
 export const Header = () => {
   return (
-    <div className="mt-5 text-fall-900">
+    <div className="mt-5 text-fall-900 ml-5">
       <div className="font-roboto text-xl font-bold leading-tight tracking-tight text-fall-900 ">
         <p>Hello, Coffee Lover!</p>
       </div>

@@ -42,7 +42,7 @@ const Sidebar = ({ open, onClose, collapsed, setCollapsed }) => {
         </div>
       </div>
 
-      <div className="mt-[25px] mb-7 h-px bg-bone-100 dark:bg-white/30" />
+      <div className="mt-[25px] mb-7 h-px bg-fall-100 dark:bg-white/30" />
 
       <ul className="mb-auto pt-1">
         <Links routes={routes} collapsed={collapsed} />{" "}

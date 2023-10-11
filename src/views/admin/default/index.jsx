@@ -54,7 +54,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <h1 className="ml-4 mt-5 text-xl font-bold text-fall-50 ">Marketing</h1>
+      <h1 className="ml-4 mt-5 text-xl font-bold text-fall-800 ">Marketing</h1>
       <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-4">
         <div className="xl:col-span-2">
           <PricingStrategyTable />
@@ -67,7 +67,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <h1 className="ml-4 mt-5 text-xl font-bold text-fall-50 ">Inventory</h1>
+      <h1 className="ml-4 mt-5 text-xl font-bold text-fall-800 ">Inventory</h1>
       <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-6">
         <div className="xl:col-span-4">
           <ComplexTable
@@ -81,7 +81,7 @@ const Dashboard = () => {
       </div>
 
       {/* Hiring Section */}
-      <h4 className="ml-4 mt-5 text-xl font-bold text-fall-50 ">Hiring</h4>
+      <h4 className="ml-4 mt-5 text-xl font-bold text-fall-800 ">Hiring</h4>
 
       <div className="mt-5">
         <HiringQuestion
@@ -90,6 +90,7 @@ const Dashboard = () => {
           handleSearch={handleSearch}
           answer={answer}
         />
+      
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Navbar from "components/navbar";
 import Sidebar from "components/sidebar";
@@ -71,12 +71,14 @@ export default function Admin(props) {
       {/* Navbar & Main Content */}
       <div className="h-full w-full bg-fall-150 dark:!bg-navy-900">
         <div
-          style={{ marginLeft: sidebarWidth }}
+          style={{
+            marginLeft: sidebarWidth,
+            position: "sticky",
+            top: "0",
+            zIndex: "1000",
+          }}
           className="top-0 z-50 flex flex-col items-center md:flex-row"
         >
-          <div className="w-full flex-none md:w-auto">
-            <Header />
-          </div>
           <div className="w-full flex-grow md:w-auto">
             <Navbar
               onOpenSidenav={() => setOpen(true)}
@@ -92,6 +94,9 @@ export default function Admin(props) {
           style={{ marginLeft: sidebarWidth }}
           className={`mx-[12px] h-full flex-none transition-all md:pr-2`}
         >
+          <div className="w-full flex-none md:w-auto">
+            <Header />
+          </div>
           {/* Routes */}
           <div className="h-full">
             <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-2 md:pr-2">

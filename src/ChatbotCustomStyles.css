@@ -1,0 +1,36 @@
+/* Hide the chat header */
+.react-chatbot-kit-chat-header {
+  @apply hidden;
+}
+
+/* Hide the chat input container */
+.react-chatbot-kit-chat-input-container {
+  @apply hidden;
+}
+
+.react-chatbot-kit-chat-bot-message-container {
+    @apply flex flex-row items-center;
+    position: relative;
+  }
+  
+  .react-chatbot-kit-chat-bot-avatar-container {
+    @apply flex-shrink-0;
+    width: 40px;
+    min-width: 40px; 
+  }
+  
+  .react-chatbot-kit-chat-bot-message {
+    @apply  p-2 rounded-full shadow-md;
+    @apply ml-2 mt-3;
+    position: relative;
+    @apply text-fall-950;
+    
+  }
+  
+  .react-chatbot-kit-chat-bot-message-container:nth-child(2) .react-chatbot-kit-chat-bot-message {
+    margin-left: 44px;
+  }
+
+  .react-chatbot-kit-chat-bot-message {
+    @apply overflow-auto; 
+  }

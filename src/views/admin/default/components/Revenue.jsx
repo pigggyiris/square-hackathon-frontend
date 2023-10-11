@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from "react";
+import { MdArrowDropUp } from "react-icons/md";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import LineChart from "components/charts/LineChart";
@@ -32,28 +33,26 @@ const Revenue = () => {
             </Menu.Button>
           </div>
           <Transition as={Fragment}>
-            <Menu.Items className="ring-black absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-opacity-5 focus:outline-none">
+            <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-fall-800 ring-opacity-5 focus:outline-none">
               <div className="py-1">
-                {["Daily", "Monthly", "Quarterly", "Yearly"].map(
-                  (timePeriod) => (
-                    <Menu.Item key={timePeriod}>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active
-                              ? "bg-gray-100 text-gray-900"
-                              : "text-gray-700",
-                            "block px-4 py-2 text-sm"
-                          )}
-                          onClick={() => setSelectedTimePeriod(timePeriod)}
-                        >
-                          {timePeriod}
-                        </a>
-                      )}
-                    </Menu.Item>
-                  )
-                )}
+                {["Daily", "Weekly"].map((timePeriod) => (
+                  <Menu.Item key={timePeriod}>
+                    {({ active }) => (
+                      <a
+                        href="#"
+                        className={classNames(
+                          active
+                            ? "bg-gray-100 text-gray-900"
+                            : "text-gray-700",
+                          "block px-4 py-2 text-sm"
+                        )}
+                        onClick={() => setSelectedTimePeriod(timePeriod)}
+                      >
+                        {timePeriod}
+                      </a>
+                    )}
+                  </Menu.Item>
+                ))}
               </div>
             </Menu.Items>
           </Transition>
@@ -68,7 +67,8 @@ const Revenue = () => {
           <div className="flex flex-col items-start">
             <p className="mt-2 text-sm text-gray-600">Total growth</p>
             <div className="flex flex-row items-center justify-center">
-              {/* Your growth icon and percentage here */}
+              <MdArrowDropUp className="font-medium text-red-500" />
+              <p className="text-sm font-bold text-gray-600"> +2.45% </p>
             </div>
           </div>
         </div>

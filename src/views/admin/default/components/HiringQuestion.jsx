@@ -1,22 +1,24 @@
-import React from 'react';
+import React from "react";
 import Card from "components/card";
+import Chatbot from "react-chatbot-kit";
+import config from "../services/chatbot/config";
+import MessageParser from "../services/chatbot/MessageParser";
+import ActionProvider from "../services/chatbot/ActionProvider";
 import SearchBar from "./SearchBar";
 
-const HiringQuestion = ({ userQuestion, setUserQuestion, handleSearch, answer }) => {
+const HiringQuestion = ({
+  userQuestion,
+  setUserQuestion,
+  handleSearch,
+  answer,
+}) => {
   return (
     <Card>
-      <SearchBar
-        value={userQuestion}
-        onChange={(e) => setUserQuestion(e.target.value)}
-        onSearch={handleSearch}
+      <Chatbot
+        config={config}
+        messageParser={MessageParser}
+        actionProvider={ActionProvider}
       />
-      {answer ? (
-        <div className="px-4 pt-1 pb-4 text-fall-800">{answer}</div>
-      ) : (
-        <div className="px-4 pt-1 pb-4 text-center text-fall-800">
-          Ask me about any hiring questions 😀
-        </div>
-      )}
     </Card>
   );
 };
