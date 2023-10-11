@@ -55,11 +55,11 @@ const Dashboard = () => {
       </div>
 
       <h1 className="mt-5 ml-4 text-xl font-bold text-fall-50 ">Marketing</h1>
-      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-5">
+      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-4">
         <div className="xl:col-span-2">
           <PricingStrategyTable />
         </div>
-        <div className="xl:col-span-2">
+        <div className="xl:col-span-1">
           <CampaignIdea
             userQuestion={userQuestion}
             setUserQuestion={setUserQuestion}
@@ -73,14 +73,14 @@ const Dashboard = () => {
       </div>
 
       <h1 className="mt-5 ml-4 text-xl font-bold text-fall-50 ">Inventory</h1>
-      <div className="mt-5 grid grid-cols-6 items-stretch gap-5">
-        <div className="col-span-4">
+      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-6">
+        <div className="xl:col-span-4">
           <ComplexTable
             columnsData={columnsDataComplex}
             tableData={tableDataComplex}
           />
         </div>
-        <div className="col-span-2">
+        <div className="xl:col-span-2">
           <TaskCard />
         </div>
       </div>
