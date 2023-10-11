@@ -62,8 +62,11 @@ export default function Admin(props) {
     <div className="flex h-full w-full">
       <Sidebar open={open} onClose={() => setOpen(false)} />
       {/* Navbar & Main Content */}
-      <div className="h-full w-full bg-fall-960 dark:!bg-navy-900">
-        <div className="sticky top-0 z-50 xl:ml-[241px]">
+      <div className="h-full w-full bg-fall-150 dark:!bg-navy-900">
+        <div
+          style={{ marginLeft: open ? "241px" : "6rem" }}
+          className="sticky top-0 z-50"
+        >
           <Navbar
             onOpenSidenav={() => setOpen(true)}
             logoText={"Horizon UI Tailwind React"}
@@ -74,7 +77,8 @@ export default function Admin(props) {
         </div>
         {/* Main Content */}
         <main
-          className={`mx-[12px] h-full flex-none transition-all md:pr-2 xl:ml-[313px]`}
+          style={{ marginLeft: open ? "241px" : "6rem" }}
+          className={`mx-[12px] h-full flex-none transition-all md:pr-2`}
         >
           {/* Routes */}
           <div className="h-full">
@@ -84,7 +88,6 @@ export default function Admin(props) {
             <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-2 md:pr-2">
               <Routes>
                 {getRoutes(routes)}
-
                 <Route
                   path="/"
                   element={<Navigate to="/admin/default" replace />}

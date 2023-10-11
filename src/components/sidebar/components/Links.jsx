@@ -2,15 +2,11 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import DashIcon from "components/icons/DashIcon";
-// chakra imports
 
 export function SidebarLinks(props) {
-  // Chakra color mode
   let location = useLocation();
+  const { routes, collapsed } = props;
 
-  const { routes } = props;
-
-  // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {
     return location.pathname.includes(routeName);
   };
@@ -38,15 +34,18 @@ export function SidebarLinks(props) {
                 >
                   {route.icon ? route.icon : <DashIcon />}{" "}
                 </span>
-                <p
-                  className={`leading-1 ml-4 flex ${
-                    activeRoute(route.path) === true
-                      ? "font-bold text-fall-900"
-                      : "font-medium text-fall-600"
-                  }`}
-                >
-                  {route.name}
-                </p>
+
+                {!collapsed && (
+                  <p
+                    className={`leading-1 ml-4 flex ${
+                      activeRoute(route.path) === true
+                        ? "font-bold text-fall-900"
+                        : "font-medium text-fall-600"
+                    }`}
+                  >
+                    {route.name}
+                  </p>
+                )}
               </li>
               {activeRoute(route.path) ? (
                 <div class="absolute right-0 top-px h-9 w-1 rounded-lg bg-fall-600 dark:bg-brand-400" />
@@ -57,7 +56,7 @@ export function SidebarLinks(props) {
       }
     });
   };
-  // BRAND
+
   return createLinks(routes);
 }
 

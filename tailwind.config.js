@@ -107,7 +107,9 @@ module.exports = {
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
         dm: ["DM Sans", "sans-serif"],
+        comfortaa: ["Comfortaa", "sans"],
       },
       boxShadow: {
         "3xl": "14px 17px 40px 4px",
@@ -180,7 +182,8 @@ module.exports = {
 
       fall: {
         50: "#f8f9f1",
-        100: "#eeeed7",
+        150: "#eeeed7",
+        100: "#dbd3ad",
         200: "#dfdfb3",
         300: "#c9c780",
         400: "#bdb662",
