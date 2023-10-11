@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { HiX, HiMenu } from "react-icons/hi";
+import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/20/solid";
 import Links from "./components/Links";
 import logoImage from "assets/img/layout/logoImage.png";
 import routes from "routes.js";
 
-const Sidebar = ({ open, onClose }) => {
-  const [collapsed, setCollapsed] = useState(true);
+const Sidebar = ({ open, onClose, collapsed, setCollapsed }) => {
+  
   const sidebarWidth = collapsed ? "6rem" : "14rem";
   const toggleCollapse = () => {
     setCollapsed(!collapsed);
@@ -25,20 +26,23 @@ const Sidebar = ({ open, onClose }) => {
         <HiX />
       </span>
 
-      <button onClick={toggleCollapse} className="absolute top-4 left-4">
-        <HiMenu />
+      <button onClick={toggleCollapse} className="absolute top-2 right-0.5">
+        {collapsed ? (
+          <ChevronRightIcon className="h-5 w-5 text-gray-700" />
+        ) : (
+          <ChevronLeftIcon className="h-5 w-5 text-gray-700" />
+        )}
       </button>
 
-      <div className={`mx-[56px] mt-[10px] flex flex-col items-center`}>
-        <img src={logoImage} alt="Small Logo" className="mb-2 w-16" />
-        {!collapsed && (
-          <div className="h-2.5 min-w-[min-content] whitespace-nowrap font-poppins text-[24px] font-bold uppercase text-fall-900 dark:text-white">
-            Bean <span className="font-medium text-softgreen-900">Box</span>
-          </div>
-        )}
+      <div className={`mx-[20px] mt-[5px] flex flex-col items-center`}>
+        <img src={logoImage} alt="Small Logo" className="mb-1 w-14" />
+
+        <div className="h-2 min-w-[min-content] whitespace-nowrap font-poppins text-[16px] font-bold uppercase text-fall-900 dark:text-white">
+          Bean <span className="font-medium text-softgreen-900">Box</span>
+        </div>
       </div>
 
-      <div className="mt-[58px] mb-7 h-px bg-bone-100 dark:bg-white/30" />
+      <div className="mt-[25px] mb-7 h-px bg-bone-100 dark:bg-white/30" />
 
       <ul className="mb-auto pt-1">
         <Links routes={routes} collapsed={collapsed} />{" "}
