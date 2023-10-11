@@ -90,6 +90,7 @@ const Dashboard = () => {
           handleSearch={handleSearch}
           answer={answer}
         />
+      
       </div>
     </div>
   );
