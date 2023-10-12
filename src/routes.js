@@ -19,6 +19,8 @@ import {
   MdOutlineSettings,
 } from "react-icons/md";
 
+import { IconName } from "react-icons/ci";
+
 const EmptyPage = () => <div></div>;
 
 const routes = [
