@@ -9,10 +9,10 @@ import avatar from "assets/img/avatars/avatar4.png";
 
 const Navbar = () => {
   return (
-    <nav className="sticky top-0 z-50 flex w-full flex-row flex-wrap items-center justify-between bg-fall-960 p-2 backdrop-blur-xl  dark:bg-[#0b14374d]">
+    <nav className="sticky top-0 z-50 flex w-full flex-row flex-wrap items-center justify-between bg-fall-900 p-2 backdrop-blur-xl  dark:bg-[#0b14374d]">
       <div></div>
       <div className="relative mt-[3px] flex h-[61px] flex-grow items-center justify-between gap-2 rounded-full px-2 py-2  shadow-shadow-500 dark:!bg-fall-800 dark:shadow-none  md:gap-1 xl:gap-2">
-        <div className="flex h-full flex-grow items-center rounded-full bg-fall-50 bg-opacity-80 text-fall-700 dark:bg-fall-900 dark:text-white">
+        <div className="flex h-full flex-grow items-center rounded-full bg-fall-50 bg-opacity-90 text-fall-700 dark:bg-fall-900 dark:text-white">
           <p className="pl-3 pr-2 text-xl">
             <FiSearch className="h-4 w-4 text-fiord-400 dark:text-white" />
           </p>

@@ -12,7 +12,7 @@ import Widget from "components/widget/Widget";
 import { PricingStrategyTable } from "./components/PricingStrategyTable";
 import ComplexTable from "views/admin/default/components/ComplexTable";
 import CampaignIdea from "views/admin/default/components/CampaignIdea";
-import EmailPromo from "views/admin/default/components/EmailPromo";
+import MarketingPie from "views/admin/default/components/MarketingPie";
 
 import TaskCard from "views/admin/default/components/TaskCard";
 import tableDataComplex from "./variables/tableDataComplex.json";
@@ -74,7 +74,7 @@ const Dashboard = () => {
           <CampaignIdea />
         </div>
         <div className="xl:col-span-3">
-          <EmailPromo />
+          <MarketingPie />
         </div>
       </div>
 
@@ -83,7 +83,7 @@ const Dashboard = () => {
       </h1>
       <div className="mt-2 grid grid-cols-1 gap-5 font-sans xl:grid-cols-6">
         <div className="xl:col-span-4">
-          <ComplexTable setTodos={setTodos} todos={todos}/>
+          <ComplexTable setTodos={setTodos} todos={todos} />
         </div>
         <div className="xl:col-span-2">
           <TaskCard todos={todos} setTodos={setTodos} />
@@ -95,12 +95,8 @@ const Dashboard = () => {
         Hiring
       </h4>
 
-
       <div className="mt-2">
-        <HiringQuestion
-        />
-
-     
+        <HiringQuestion />
       </div>
     </div>
   );

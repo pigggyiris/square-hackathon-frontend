@@ -2,13 +2,13 @@ import PieChart from "components/charts/PieChart";
 import { pieChartData, pieChartOptions } from "variables/charts";
 import Card from "components/card";
 
-const EmailPromo = () => {
+const MarketingPie = () => {
   return (
     <Card extra="rounded-[20px] p-3 h-[350px]">
       <div className="flex flex-row justify-between px-3 pt-2">
         <div>
           <h4 className="text-lg font-bold text-navy-700 dark:text-white">
-            Email Promotion Idea
+            Best Marketing Ratio
           </h4>
         </div>
 
@@ -27,4 +27,4 @@ const EmailPromo = () => {
   );
 };
 
-export default EmailPromo;
+export default MarketingPie;

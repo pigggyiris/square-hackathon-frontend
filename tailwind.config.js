@@ -116,6 +116,9 @@ module.exports = {
         nanumpen: ["Nanum Pen Script", "cursive"],
         saira: ["Saira Condensed", "sans-serif"],
         advent: ["Advent Pro", "sans-serif"],
+        zeyada: ["Zeyada", "cursive"],
+        great: ["Great Vibes", "cursive"],
+        tilt: ['"Tilt Neon"', 'cursive'],
 
         sofia: ["Sofia Pro", "sans-serif"],
         sans: ["IBM Plex Sans Condensed", "sans-serif"],
@@ -282,6 +285,7 @@ module.exports = {
       lime: {
         50: "#f7fee7",
         100: "#ecfccb",
+
         200: "#d9f99d",
         300: "#bef264",
         400: "#98ec2d",
@@ -291,6 +295,20 @@ module.exports = {
         800: "#3f6212",
         900: "#365314",
       },
+      sisal: {
+        50: "#f8f6f4",
+        100: "#eeece6",
+        200: "#d2cabb",
+        300: "#c7bcaa",
+        400: "#af9f88",
+        500: "#9f8870",
+        600: "#927964",
+        700: "#7a6354",
+        800: "#645248",
+        900: "#52453c",
+        950: "#2b221f",
+      },
+
       green: {
         50: "#05cd991a",
         100: "#dcfce7",
