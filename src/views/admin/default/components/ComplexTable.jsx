@@ -60,7 +60,13 @@ const ComplexTable = ({ setTodos, todos }) => {
   };
 
   const determineColor = (progress) => {
-    return progress < 20 ? "red" : "fall";
+    if (progress < 20) {
+      return "red";
+    } else if (progress < 80) {
+      return "yellow";
+    } else {
+      return "green";
+    }
   };
 
   return (

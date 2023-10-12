@@ -7,11 +7,11 @@ const fetchCurrentInventory = async () => {
       'Ground coffee': 25
     },
     'Milk': {
-      'Whole milk': 5,
+      'Whole milk': 35,
       '2% milk': 15
     },
     'Other Supplies': {
-      'Paper towels': 10,
+      'Paper towels': 20,
       'Napkins': 50
     }
   };
