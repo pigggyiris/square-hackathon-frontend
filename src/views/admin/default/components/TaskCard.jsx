@@ -9,13 +9,16 @@ import { EditTaskForm } from "./EditTaskForm";
 
 const ITEMS_PER_PAGE = 12;
 
-const TaskCard = () => {
-  const [todos, setTodos] = useState(() => {
-    const savedTodos = localStorage.getItem("todos");
-    return savedTodos ? JSON.parse(savedTodos) : [];
-  });
-
+const TaskCard = ({ todos, setTodos }) => {
   const [currentPage, setCurrentPage] = useState(1);
+
+   // Read from local storage when the component mounts
+   useEffect(() => {
+    const savedTodos = localStorage.getItem("todos");
+    if (savedTodos) {
+      setTodos(JSON.parse(savedTodos));
+    }
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));

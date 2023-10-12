@@ -5,9 +5,10 @@ import Progress from "components/progress";
 import { getInventoryData } from "../services/currentInventoryService";
 import fetchCurrentInventory from "../services/currentInventoryService";
 import fetchRequiredInventory from "../services/requiredInventoryService";
+import { v4 as uuidv4 } from "uuid";
 import TaskCard from "./TaskCard";
 
-const ComplexTable = () => {
+const ComplexTable = ({ setTodos, todos }) => {
   const [inventory, setInventory] = useState(null);
   const [requiredInventory, setRequiredInventory] = useState(null);
 
@@ -21,6 +22,39 @@ const ComplexTable = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (inventory && requiredInventory) {
+      const newTodos = [];
+      Object.entries(inventory).forEach(([category, items]) => {
+        Object.entries(items).forEach(([item, current]) => {
+          const required = requiredInventory[category][item] || 0;
+          const progress = calculateProgress(current, required);
+          const color = determineColor(progress);
+
+          if (color === "red") {
+            // Check if this todo already exists
+            const existingTodo = todos.find(
+              (todo) => todo.task === `Refill the inventory of ${item}`
+            );
+
+            if (!existingTodo) {
+              newTodos.push({
+                id: uuidv4(),
+                task: `Refill the inventory of ${item}`,
+                completed: false,
+                isEditing: false,
+              });
+            }
+          }
+        });
+      });
+
+      if (newTodos.length > 0) {
+        const mergedTodos = [...todos, ...newTodos];
+        setTodos(mergedTodos);
+      }
+    }
+  }, [inventory, requiredInventory]);
   const calculateProgress = (current, required) => {
     return (current / required) * 100;
   };
