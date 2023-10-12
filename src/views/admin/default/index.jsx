@@ -18,12 +18,10 @@ import { searchQuestion } from "./services/hiringService";
 import { useState } from "react";
 
 const Dashboard = () => {
-  const [userQuestion, setUserQuestion] = useState("");
-  const [answer, setAnswer] = useState(null);
-  const handleSearch = async () => {
-    const response = await searchQuestion(userQuestion);
-    setAnswer(response);
-  };
+  const [todos, setTodos] = useState(() => {
+    const savedTodos = localStorage.getItem("todos");
+    return savedTodos ? JSON.parse(savedTodos) : [];
+  });
 
   return (
     <div>
@@ -70,13 +68,10 @@ const Dashboard = () => {
       <h1 className="ml-4 mt-5 text-xl font-bold text-fall-800 ">Inventory</h1>
       <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-6">
         <div className="xl:col-span-4">
-          <ComplexTable
-            columnsData={columnsDataComplex}
-            tableData={tableDataComplex}
-          />
+          <ComplexTable setTodos={setTodos} todos={todos}/>
         </div>
         <div className="xl:col-span-2">
-          <TaskCard />
+          <TaskCard todos={todos} setTodos={setTodos} />
         </div>
       </div>
 
@@ -84,13 +79,7 @@ const Dashboard = () => {
       <h4 className="ml-4 mt-5 text-xl font-bold text-fall-800 ">Hiring</h4>
 
       <div className="mt-5">
-        <HiringQuestion
-          userQuestion={userQuestion}
-          setUserQuestion={setUserQuestion}
-          handleSearch={handleSearch}
-          answer={answer}
-        />
-      
+        <HiringQuestion />
       </div>
     </div>
   );

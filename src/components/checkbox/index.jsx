@@ -32,6 +32,8 @@ const Checkbox = (props) => {
           ? "checked:border-none checked:bg-amber-500 dark:checked:bg-amber-400"
           : color === "indigo"
           ? "checked:border-none checked:bg-indigo-500 dark:checked:bg-indigo-400"
+          : color === "fall"
+          ? "checked:border-none checked:bg-fall-700 dark:checked:bg-fall-100"
           : color === "gray"
           ? "checked:border-none checked:bg-gray-500 dark:checked:bg-gray-400"
           : "checked:bg-brand-500 dark:checked:bg-brand-400"

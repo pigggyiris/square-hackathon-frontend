@@ -9,13 +9,13 @@ const Progress = (props) => {
       <div
         className={`flex h-full items-center justify-center rounded-full ${
           color === "red"
-            ? "bg-red-500 dark:bg-red-400"
+            ? "bg-red-400 dark:bg-red-400"
             : color === "blue"
             ? "bg-blue-500 dark:bg-blue-400"
             : color === "green"
-            ? "bg-green-500 dark:bg-green-400"
+            ? "bg-softgreen-400 dark:bg-softgreen-200"
             : color === "yellow"
-            ? "bg-yellow-500 dark:bg-yellow-400"
+            ? "bg-yellow-400 dark:bg-yellow-400"
             : color === "orange"
             ? "bg-orange-500 dark:bg-orange-400"
             : color === "teal"
