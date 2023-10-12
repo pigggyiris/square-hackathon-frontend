@@ -37,14 +37,14 @@ const CampaignIdea = () => {
   ];
 
   return (
-    <Card extra="!p-[20px] text-left h-auto">
+    <Card extra="!p-[20px] text-left h-[350px]">
       <div className="mb-4 flex justify-between">
         <h4 className="text-xl font-bold text-gray-900 dark:text-white">
           Campaign Idea
         </h4>
       </div>
-      <div className="grid grid-rows-2 gap-4">
-        <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-rows-2 gap-2">
+        <div className="grid grid-cols-4 gap-2">
           <div className="col-span-2">
             <Bubble
               title={ideas[0].title}

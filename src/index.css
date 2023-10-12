@@ -59,3 +59,14 @@ input:checked.defaultCheckbox::before {
 .grid > * {
   min-height: 0;
 }
+
+.slide-in {
+  opacity: 1;
+  transform: translateX(0);
+  transition: transform 1s, opacity 1s;
+}
+
+.header-animate:not(.slide-in) {
+  opacity: 0;
+  transform: translateX(-100%);
+}
