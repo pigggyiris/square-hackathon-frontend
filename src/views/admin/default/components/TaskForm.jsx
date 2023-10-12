@@ -16,7 +16,7 @@ export const TaskForm = ({ addTodo }) => {
       <div className="flex mt-5">
         <input
           type="text"
-          className="todo-input w-full border border-fall-800 px-3 rounded"
+          className="todo-input w-full border border-fall-700 px-3 rounded text-fall-700"
           value={value}
           placeholder="Add a new task?"
           onChange={(e) => setValue(e.target.value)}

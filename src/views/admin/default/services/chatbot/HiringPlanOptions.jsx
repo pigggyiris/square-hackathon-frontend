@@ -32,7 +32,7 @@ const HiringPlanOptions = (props) => {
             <button
               key={option.id}
               onClick={() => handleOptionClick(option.id, option.handler)}
-              className={`m-2 rounded-full bg-fall-100 py-2 px-4 text-fall-950 hover:bg-fall-400 ${
+              className={`m-2 rounded-full bg-fall-100 py-2 px-4 text-fall-950 hover:bg-fall-400 shadow-md ${
                 botResponded ? "cursor-not-allowed" : ""
               }`}
               disabled={botResponded}
