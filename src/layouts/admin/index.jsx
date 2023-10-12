@@ -12,7 +12,7 @@ export default function Admin(props) {
   const [open, setOpen] = React.useState(true);
   const [currentRoute, setCurrentRoute] = React.useState("Main Dashboard");
   const [collapsed, setCollapsed] = useState(false);
-  const sidebarWidth = collapsed ? "8rem" : "16rem";
+  const sidebarWidth = collapsed ? "5rem" : "13rem";
 
   React.useEffect(() => {
     window.addEventListener("resize", () =>
