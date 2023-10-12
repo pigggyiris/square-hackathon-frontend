@@ -6,12 +6,7 @@ import MessageParser from "../services/chatbot/MessageParser";
 import ActionProvider from "../services/chatbot/ActionProvider";
 import SearchBar from "./SearchBar";
 
-const HiringQuestion = ({
-  userQuestion,
-  setUserQuestion,
-  handleSearch,
-  answer,
-}) => {
+const HiringQuestion = ({}) => {
   return (
     <Card>
       <Chatbot

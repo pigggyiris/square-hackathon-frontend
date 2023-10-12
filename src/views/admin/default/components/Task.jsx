@@ -10,14 +10,14 @@ export const Task = ({ task, toggleComplete, deleteTodo, editTodo }) => {
       <div className="flex items-center">
         <Checkbox color="fall" onChange={() => toggleComplete(task.id)} />
         <p
-          className={`ml-2 text-fall-800 ${
-            task.completed ? "line-through" : ""
+          className={`ml-2 text-fall-700 ${
+            task.completed ? "text-gray-400 line-through" : ""
           }`}
         >
           {task.task}
         </p>
       </div>
-      <div className="flex items-center text-fall-800">
+      <div className="flex items-center text-fall-700">
         <FontAwesomeIcon
           icon={faPenToSquare}
           className="mr-2"
