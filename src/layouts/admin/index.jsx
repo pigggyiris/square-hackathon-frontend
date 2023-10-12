@@ -69,7 +69,7 @@ export default function Admin(props) {
         setCollapsed={setCollapsed}
       />
       {/* Navbar & Main Content */}
-      <div className="h-full w-full bg-fall-960 dark:!bg-navy-900">
+      <div className="h-full w-full bg-fall-900 dark:!bg-navy-900">
         <div
           style={{
             marginLeft: sidebarWidth,
