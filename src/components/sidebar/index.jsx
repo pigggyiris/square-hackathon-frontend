@@ -6,8 +6,7 @@ import logoImage from "assets/img/layout/logoImage.png";
 import routes from "routes.js";
 
 const Sidebar = ({ open, onClose, collapsed, setCollapsed }) => {
-  
-  const sidebarWidth = collapsed ? "6rem" : "14rem";
+  const sidebarWidth = collapsed ? "6rem" : "12rem";
   const toggleCollapse = () => {
     setCollapsed(!collapsed);
   };
@@ -20,17 +19,17 @@ const Sidebar = ({ open, onClose, collapsed, setCollapsed }) => {
       }`}
     >
       <span
-        className="absolute top-4 right-4 block cursor-pointer xl:hidden"
+        className="absolute right-4 top-4 block cursor-pointer xl:hidden"
         onClick={onClose}
       >
         <HiX />
       </span>
 
-      <button onClick={toggleCollapse} className="absolute top-2 right-0.5">
+      <button onClick={toggleCollapse} className="absolute right-0.5 top-2">
         {collapsed ? (
-          <ChevronRightIcon className="h-5 w-5 text-gray-700" />
+          <ChevronRightIcon className="h-5 w-5 text-softgreen-700" />
         ) : (
-          <ChevronLeftIcon className="h-5 w-5 text-gray-700" />
+          <ChevronLeftIcon className="h-5 w-5 text-softgreen-700" />
         )}
       </button>
 
@@ -42,7 +41,7 @@ const Sidebar = ({ open, onClose, collapsed, setCollapsed }) => {
         </div>
       </div>
 
-      <div className="mt-[25px] mb-7 h-px bg-fall-100 dark:bg-white/30" />
+      <div className="mb-7 mt-[25px] h-px bg-bone-100 dark:bg-white/30" />
 
       <ul className="mb-auto pt-1">
         <Links routes={routes} collapsed={collapsed} />{" "}

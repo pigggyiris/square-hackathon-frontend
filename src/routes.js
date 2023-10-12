@@ -15,6 +15,8 @@ import {
   MdLock,
   MdOutlineInventory2,
   MdOutlinePeopleAlt,
+  MdLogout,
+  MdOutlineSettings,
 } from "react-icons/md";
 
 const EmptyPage = () => <div></div>;
