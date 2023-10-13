@@ -2,22 +2,18 @@ import MiniCalendar from "components/calendar/MiniCalendar";
 import Revenue from "views/admin/default/components/Revenue";
 import TopFlavors from "views/admin/default/components/TopFlavors";
 import HiringQuestion from "./components/HiringQuestion";
-
 import { IoPeopleSharp } from "react-icons/io5";
 import { MdBarChart, MdShoppingCart, MdStickyNote2 } from "react-icons/md";
-
-import { columnsDataCheck, columnsDataComplex } from "./variables/columnsData";
-
 import Widget from "components/widget/Widget";
 import { PricingStrategyTable } from "./components/PricingStrategyTable";
 import ComplexTable from "views/admin/default/components/ComplexTable";
 import CampaignIdea from "views/admin/default/components/CampaignIdea";
 import MarketingPie from "views/admin/default/components/MarketingPie";
-
 import TaskCard from "views/admin/default/components/TaskCard";
-import tableDataComplex from "./variables/tableDataComplex.json";
-import { searchQuestion } from "./services/hiringService";
-import { useState } from "react";
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { BASE_URL } from "../../../config";
 
 const Dashboard = () => {
   const [todos, setTodos] = useState(() => {
@@ -25,29 +21,65 @@ const Dashboard = () => {
     return savedTodos ? JSON.parse(savedTodos) : [];
   });
 
+  const [data, setData] = useState({
+    totalRevenue: 0,
+    totalQuantity: 0,
+    totalOrders: 0,
+    dailyRevenue: 0,
+  });
+
+  const currentMonth = new Date().getMonth() + 1;
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/v1/salesInfo/sales_report_monthly/${currentMonth}`)
+      .then((response) => {
+        const { totalRevenue, totalQuantity, totalOrders, salesReportbyDay } =
+          response.data;
+
+        const currentDate = new Date();
+        const currentDay = currentDate.getDate();
+        const todayData = response.data.salesReportbyDay[currentDay - 1];
+        const dailyRevenue = todayData ? todayData.totalRevenue : 0;
+
+        setData({
+          totalRevenue,
+          totalQuantity,
+          totalOrders,
+          dailyRevenue,
+        });
+
+        console.log("Monthly Revenue:", totalRevenue);
+        console.log("Daily Revenue:", dailyRevenue);
+        console.log("today", currentDay);
+        console.log("month:", currentMonth);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
   return (
     <div>
       <div className="mt-8 grid grid-cols-1 gap-5 font-sans md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-4 3xl:grid-cols-6">
         <Widget
           icon={<MdBarChart className="h-7 w-7 text-fall-600" />}
-          title={"Earning this month"}
-          subtitle={"$340.5"}
+          title={"Earnings this month"}
+          subtitle={`$${data.totalRevenue}`}
         />
         <Widget
           icon={<MdShoppingCart className="h-6 w-6 text-fall-600" />}
           title={"Sales this month"}
-          subtitle={"1289"}
+          subtitle={`${data.totalQuantity}`}
         />
         <Widget
           icon={<IoPeopleSharp className="h-7 w-7 text-fall-600" />}
-          title={"New clients"}
-          subtitle={"583"}
+          title={"New orders"}
+          subtitle={`${data.totalOrders}`}
         />
 
         <Widget
           icon={<MdStickyNote2 className="h-7 w-7 text-fall-600" />}
-          title={"New Tasks"}
-          subtitle={"50"}
+          title={"Earnings Today "}
+          subtitle={`${data.dailyRevenue}`}
         />
       </div>
 

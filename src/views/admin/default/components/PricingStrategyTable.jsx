@@ -2,13 +2,11 @@ import React from "react";
 import LineChart from "components/charts/LineChart";
 import Card from "components/card";
 import {
-  lineChartDataTotalSpent,
-  lineChartOptionsTotalSpent,
+  lineChartDataTotalSpentStrategy,
+  lineChartOptionsTotalSpentStrategy,
 } from "variables/charts";
 
 export const PricingStrategyTable = () => {
-  
-
   return (
     <Card extra="!p-[20px] text-left h-96">
       <div className="flex justify-between">
@@ -16,13 +14,12 @@ export const PricingStrategyTable = () => {
           Pricing Strategy
         </h4>
       </div>
-      
 
       <div className="flex h-full w-full flex-row justify-between sm:flex-wrap lg:flex-nowrap 2xl:overflow-hidden">
         <div className="h-full w-full">
           <LineChart
-            options={lineChartOptionsTotalSpent}
-            series={lineChartDataTotalSpent}
+            options={lineChartOptionsTotalSpentStrategy}
+            series={lineChartDataTotalSpentStrategy}
           />
         </div>
       </div>
