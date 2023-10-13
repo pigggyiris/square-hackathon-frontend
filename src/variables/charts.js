@@ -261,8 +261,11 @@ export const barChartOptionsWeeklyRevenue = {
   },
 };
 
-export const lineChartOptionsTotalSpent = {
+export const lineChartOptionsTotalSpent = (timePeriod) => ({
   legend: {
+    show: false,
+  },
+  grid: {
     show: false,
   },
 
@@ -291,20 +294,29 @@ export const lineChartOptionsTotalSpent = {
     },
     theme: "dark",
     x: {
-      format: "dd/MM/yy HH:mm",
+      format: timePeriod === "Daily" ? "HH:mm" : "dd/MM/yy",
     },
   },
-  grid: {
-    show: false,
-  },
   xaxis: {
-    show: false,
+    show: true,
+    labels: {
+      formatter: (value) => {
+        if (timePeriod === "Daily") {
+          return `${value}:00`;
+        }
+        const currentMonth = new Date().getMonth() + 1;
+        return `${currentMonth}/${value}`;
+      },
+      style: {
+        colors: "#405668",
+      },
+    },
   },
 
   yaxis: {
     show: false,
   },
-};
+});
 
 export const lineChartDataTotalSpentStrategy = [
   {

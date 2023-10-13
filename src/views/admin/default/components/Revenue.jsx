@@ -14,8 +14,9 @@ function classNames(...classes) {
 }
 
 const Revenue = () => {
-  const [selectedTimePeriod, setSelectedTimePeriod] = useState("Time Period");
-  const [dailyRevenue, setDailyRevenue] = useState([]);
+  const [selectedTimePeriod, setSelectedTimePeriod] = useState("Daily");
+  const [dailyQuantity, setDailyQuantity] = useState([]);
+  const [hourlyQuantity, setHourlyQuantity] = useState([]);
 
   const currentMonth = new Date().getMonth() + 1;
 
@@ -23,25 +24,35 @@ const Revenue = () => {
     axios
       .get(`${BASE_URL}/v1/salesInfo/sales_report_monthly/${currentMonth}`)
       .then((response) => {
-        const dailyRevenues = response.data.salesReportbyDay.map(
-          (dayData) => dayData.totalRevenue
+        const dailyQuantities = response.data.salesReportbyDay.map(
+          (dayData) => dayData.totalQuantity
         );
+        const todayData =
+          response.data.salesReportbyDay[new Date().getDate() - 1];
+        const hourlyQuantities = todayData
+          ? todayData.salesReportbyHour.map(
+              (hourData) => hourData.totalQuantity
+            )
+          : [];
 
-        console.log(dailyRevenues);
-        setDailyRevenue(dailyRevenues);
+        setDailyQuantity(dailyQuantities);
+        setHourlyQuantity(hourlyQuantities);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   }, []);
+
   const todayDate = new Date().getDate(); // 当天是一个月中的哪一天
-  const displayedRevenue = dailyRevenue.slice(0, todayDate); // 只显示到今天的数据
+  const displayedQuantity = dailyQuantity.slice(0, todayDate);
+  const dataForChart =
+    selectedTimePeriod === "Daily" ? hourlyQuantity : displayedQuantity;
 
   return (
     <Card extra="!p-[20px] text-left h-96">
       <div className="flex justify-between">
         <h2 className="text-lg font-bold text-gray-900 dark:text-white">
-          Revenue
+          Top Selling
         </h2>
         <Menu as="div" className="relative inline-block text-left">
           <div>
@@ -56,7 +67,7 @@ const Revenue = () => {
           <Transition as={Fragment}>
             <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-fall-800 ring-opacity-5 focus:outline-none">
               <div className="py-1">
-                {["Daily", "Weekly"].map((timePeriod) => (
+                {["Daily", "Monthly"].map((timePeriod) => (
                   <Menu.Item key={timePeriod}>
                     {({ active }) => (
                       <a
@@ -81,27 +92,15 @@ const Revenue = () => {
       </div>
 
       <div className="flex h-full w-full flex-row justify-between sm:flex-wrap lg:flex-nowrap 2xl:overflow-hidden">
-        <div className="flex flex-col">
-          <p className="mt-[20px] text-3xl font-bold text-navy-700 dark:text-white">
-            $37.5K
-          </p>
-          <div className="flex flex-col items-start">
-            <p className="mt-2 text-sm text-gray-600">Total growth</p>
-            <div className="flex flex-row items-center justify-center">
-              <MdArrowDropUp className="font-medium text-red-500" />
-              <p className="text-sm font-bold text-gray-600"> +2.45% </p>
-            </div>
-          </div>
-        </div>
         <div className="h-full w-full">
-          {dailyRevenue.length > 0 && (
+          {dataForChart.length > 0 && (
             <LineChart
-              options={lineChartOptionsTotalSpent}
+              options={lineChartOptionsTotalSpent(selectedTimePeriod)}
               series={[
                 {
-                  name: "Revenue",
-                  data: displayedRevenue,
-                  color: "#768729",
+                  name: "Quantity",
+                  data: dataForChart,
+                  color: "#446076",
                 },
               ]}
             />
