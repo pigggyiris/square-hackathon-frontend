@@ -1,13 +1,13 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { MdArrowDropUp } from "react-icons/md";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import LineChart from "components/charts/LineChart";
 import Card from "components/card";
-import {
-  lineChartDataTotalSpent,
-  lineChartOptionsTotalSpent,
-} from "variables/charts";
+import { lineChartOptionsTotalSpent } from "variables/charts";
+
+import axios from "axios";
+import { BASE_URL } from "../../../../config";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -15,6 +15,27 @@ function classNames(...classes) {
 
 const Revenue = () => {
   const [selectedTimePeriod, setSelectedTimePeriod] = useState("Time Period");
+  const [dailyRevenue, setDailyRevenue] = useState([]);
+
+  const currentMonth = new Date().getMonth() + 1;
+
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/v1/salesInfo/sales_report_monthly/${currentMonth}`)
+      .then((response) => {
+        const dailyRevenues = response.data.salesReportbyDay.map(
+          (dayData) => dayData.totalRevenue
+        );
+
+        console.log(dailyRevenues);
+        setDailyRevenue(dailyRevenues);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+  const todayDate = new Date().getDate(); // 当天是一个月中的哪一天
+  const displayedRevenue = dailyRevenue.slice(0, todayDate); // 只显示到今天的数据
 
   return (
     <Card extra="!p-[20px] text-left h-96">
@@ -73,10 +94,18 @@ const Revenue = () => {
           </div>
         </div>
         <div className="h-full w-full">
-          <LineChart
-            options={lineChartOptionsTotalSpent}
-            series={lineChartDataTotalSpent}
-          />
+          {dailyRevenue.length > 0 && (
+            <LineChart
+              options={lineChartOptionsTotalSpent}
+              series={[
+                {
+                  name: "Revenue",
+                  data: displayedRevenue,
+                  color: "#768729",
+                },
+              ]}
+            />
+          )}
         </div>
       </div>
     </Card>

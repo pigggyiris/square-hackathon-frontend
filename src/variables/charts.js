@@ -261,7 +261,52 @@ export const barChartOptionsWeeklyRevenue = {
   },
 };
 
-export const lineChartDataTotalSpent = [
+export const lineChartOptionsTotalSpent = {
+  legend: {
+    show: false,
+  },
+
+  theme: {
+    mode: "light",
+  },
+  chart: {
+    type: "line",
+
+    toolbar: {
+      show: false,
+    },
+  },
+
+  dataLabels: {
+    enabled: false,
+  },
+  stroke: {
+    curve: "smooth",
+  },
+
+  tooltip: {
+    style: {
+      fontSize: "12px",
+      backgroundColor: "#000000",
+    },
+    theme: "dark",
+    x: {
+      format: "dd/MM/yy HH:mm",
+    },
+  },
+  grid: {
+    show: false,
+  },
+  xaxis: {
+    show: false,
+  },
+
+  yaxis: {
+    show: false,
+  },
+};
+
+export const lineChartDataTotalSpentStrategy = [
   {
     name: "Revenue",
     data: [50, 64, 48, 66, 49, 68],
@@ -274,7 +319,7 @@ export const lineChartDataTotalSpent = [
   },
 ];
 
-export const lineChartOptionsTotalSpent = {
+export const lineChartOptionsTotalSpentStrategy = {
   legend: {
     show: false,
   },
