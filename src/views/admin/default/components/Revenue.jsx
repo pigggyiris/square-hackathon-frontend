@@ -52,7 +52,7 @@ const Revenue = () => {
     <Card extra="!p-[20px] text-left h-96">
       <div className="flex justify-between">
         <h2 className="text-lg font-bold text-gray-900 dark:text-white">
-          Top Selling
+          Sales Trend Chart
         </h2>
         <Menu as="div" className="relative inline-block text-left">
           <div>

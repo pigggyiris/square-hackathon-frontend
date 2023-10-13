@@ -72,7 +72,7 @@ const Dashboard = () => {
         />
         <Widget
           icon={<IoPeopleSharp className="h-7 w-7 text-fall-600" />}
-          title={"New clients"}
+          title={"New orders"}
           subtitle={`${data.totalOrders}`}
         />
 
