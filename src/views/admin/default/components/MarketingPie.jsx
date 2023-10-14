@@ -3,15 +3,17 @@ import ReactApexChart from "react-apexcharts";
 import Card from "components/card";
 import axios from "axios";
 import { BASE_URL } from "config";
+import Loading from "./Loading";
 
 const MarketingPie = () => {
   const [pieData, setPieData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const marketingResponse = await axios.get(
-          `${BASE_URL}/v1/salesInfo/marketing_percentage_suggestion?interval=monthly`
+          `${BASE_URL}/v1/salesInfo/marketing_percentage_suggestion`
         );
 
         // Wrap the response data in square brackets if it's not an array
@@ -25,8 +27,10 @@ const MarketingPie = () => {
         console.log("parsedData:", parsedData);
 
         setPieData(parsedData);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching marketing percentage data:", error);
+        setLoading(false);
       }
     };
     fetchData();
@@ -84,13 +88,19 @@ const MarketingPie = () => {
         Best Marketing Ratio
       </h4>
 
-      <div className="mt-3 mb-auto flex h-[220px] w-full items-center justify-center">
-        <ReactApexChart
-          options={chartOptions}
-          series={chartData.series}
-          type="pie"
-        />
-      </div>
+      {loading ? (
+        <div className="mt-20">
+          <Loading />{" "}
+        </div>
+      ) : (
+        <div className="mb-auto mt-3 flex h-[220px] w-full items-center justify-center">
+          <ReactApexChart
+            options={chartOptions}
+            series={chartData.series}
+            type="pie"
+          />
+        </div>
+      )}
     </Card>
   );
 };

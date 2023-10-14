@@ -2,33 +2,33 @@ import React, { useState, useEffect } from "react";
 import Card from "components/card";
 import Progress from "components/progress";
 import fetchCurrentInventory from "../services/currentInventoryService";
-import fetchRequiredInventory from "../services/requiredInventoryService";
+import Loading from "./Loading"; 
 import { v4 as uuidv4 } from "uuid";
 
 import axios from "axios";
 import { BASE_URL } from "../../../../config";
+
 
 const ComplexTable = ({ setTodos, todos }) => {
   const [inventory, setCurrentInventory] = useState(null);
   const [requiredInventory, setRequiredInventory] = useState(null);
   const currentMonth = new Date().getMonth() + 1;
 
-  // Function to transform the received data
   const transformData = (data) => {
     return {
-      "Coffee": {
+      Coffee: {
         "Green coffee beans": data["greenCoffeeBeans"] || 0,
         "Roasted coffee beans": data["roastedCoffeeBeans"] || 0,
         "Ground coffee": data["groundCoffee"] || 0,
         "Coffee filters": data["coffeeFilters"] || 0,
       },
-      "Milk": {
+      Milk: {
         "Whole milk": data["wholeMilk"] || 0,
         "2% Milk": data["2%Milk"] || 0,
       },
       "Other Supplies": {
         "Paper towels": data["paperTowel"] || 0,
-        "Napkins": data["napkins"] || 0,
+        Napkins: data["napkins"] || 0,
       },
     };
   };
@@ -44,16 +44,17 @@ const ComplexTable = ({ setTodos, todos }) => {
         );
         console.log("Required Inventory Data:", requiredInventoryResponse.data);
 
-        const transformedRequiredInventory=transformData(
+        const transformedRequiredInventory = transformData(
           requiredInventoryResponse.data
         );
 
-        setCurrentInventory(currentInventoryResponse );
+        setCurrentInventory(currentInventoryResponse);
 
-        // Set required inventory data
         setRequiredInventory(transformedRequiredInventory);
-        console.log("Transformed Required Inventory Data:", transformedRequiredInventory);
-
+        console.log(
+          "Transformed Required Inventory Data:",
+          transformedRequiredInventory
+        );
       } catch (error) {
         console.error("Error fetching inventory data:", error);
       }
@@ -71,7 +72,7 @@ const ComplexTable = ({ setTodos, todos }) => {
           const color = determineColor(progress);
 
           if (color === "red") {
-            // Check if this todo already exists
+            // Check if this todo already exists, avoid dups
             const existingTodo = todos.find(
               (todo) => todo.task === `Refill the inventory of ${item}`
             );
@@ -96,7 +97,7 @@ const ComplexTable = ({ setTodos, todos }) => {
   }, [inventory, requiredInventory]);
 
   const calculateProgress = (current, required) => {
-    // Ensure progress is capped at 100%
+    // ensure progress is capped at 100%
     const progress = (current / required) * 100;
     return progress <= 100 ? progress : 100;
   };
@@ -159,8 +160,8 @@ const ComplexTable = ({ setTodos, todos }) => {
             </tbody>
           </table>
         ) : (
-          <div className="text-center text-fall-800">
-            <p>Loading inventory data...</p>
+          <div className="text-center text-fall-800 mt-15">
+            <Loading /> 
           </div>
         )}
       </div>

@@ -8,29 +8,18 @@
   @apply hidden;
 }
 
-.react-chatbot-kit-chat-bot-message-container {
-    @apply flex flex-row items-center;
-    position: relative;
-  }
-  
-  .react-chatbot-kit-chat-bot-avatar-container {
-    @apply flex-shrink-0;
-    width: 40px;
-    min-width: 40px; 
-  }
-  
-  .react-chatbot-kit-chat-bot-message {
-    @apply  p-2 rounded-full shadow-md;
-    @apply ml-2 mt-3;
-    position: relative;
-    @apply text-fall-950;
-    
-  }
-  
-  .react-chatbot-kit-chat-bot-message-container:nth-child(2) .react-chatbot-kit-chat-bot-message {
-    margin-left: 44px;
-  }
+.react-chatbot-kit-chat-bot-message {
+  @apply py-3 px-5 rounded-full shadow-md mt-3 ml-2;
+  max-width:800px
 
-  .react-chatbot-kit-chat-bot-message {
-    @apply overflow-auto; 
-  }
+}
+
+.react-chatbot-kit-chat-bot-message-container {
+  @apply flex items-center;
+  
+}
+
+.react-chatbot-kit-chat-bot-message-container:nth-child(2) .react-chatbot-kit-chat-bot-message {
+  margin-left: 44px;
+}
+ 
