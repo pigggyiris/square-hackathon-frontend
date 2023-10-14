@@ -41,7 +41,6 @@ const ComplexTable = ({ setTodos, todos }) => {
         );
         console.log("Current Inventory Data:", currentInventoryResponse.data);
 
-        //inventories现在的数据应该是required？current的去哪里找呢？
         const requiredInventoryResponse = await axios.get(
           `${BASE_URL}/v1/salesInfo/inventories/${currentMonth}`
         );
@@ -102,14 +101,17 @@ const ComplexTable = ({ setTodos, todos }) => {
       }
     }
   }, [inventory, requiredInventory]);
+
   const calculateProgress = (current, required) => {
-    return (current / required) * 100;
+    // Ensure progress is capped at 100%
+    const progress = (current / required) * 100;
+    return progress <= 100 ? progress : 100;
   };
 
   const determineColor = (progress) => {
-    if (progress < 20) {
+    if (progress <= 50) {
       return "red";
-    } else if (progress < 80) {
+    } else if (progress <= 90) {
       return "yellow";
     } else {
       return "green";
