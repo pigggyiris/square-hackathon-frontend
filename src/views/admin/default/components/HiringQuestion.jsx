@@ -8,7 +8,7 @@ import SearchBar from "./SearchBar";
 
 const HiringQuestion = ({}) => {
   return (
-    <Card>
+    <Card >
       <Chatbot
         config={config}
         messageParser={MessageParser}
