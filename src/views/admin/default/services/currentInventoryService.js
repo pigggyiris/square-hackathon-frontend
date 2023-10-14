@@ -4,7 +4,8 @@ const fetchCurrentInventory = async () => {
     'Coffee': {
       'Green coffee beans': 20,
       'Roasted coffee beans': 50,
-      'Ground coffee': 25
+      'Ground coffee': 25,
+      'Coffee filters':30
     },
     'Milk': {
       'Whole milk': 35,

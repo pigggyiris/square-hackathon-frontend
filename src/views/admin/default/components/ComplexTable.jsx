@@ -36,9 +36,7 @@ const ComplexTable = ({ setTodos, todos }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const currentInventoryResponse = await axios.get(
-          `${BASE_URL}/v1/salesInfo/inventories/${currentMonth}`
-        );
+        const currentInventoryResponse = await fetchCurrentInventory();
         console.log("Current Inventory Data:", currentInventoryResponse.data);
 
         const requiredInventoryResponse = await axios.get(
@@ -50,12 +48,7 @@ const ComplexTable = ({ setTodos, todos }) => {
           requiredInventoryResponse.data
         );
 
-        
-        const transformedCurrentInventory = transformData(
-          currentInventoryResponse.data
-        );
-        console.log("Transformed Current Inventory Data:", transformedCurrentInventory);
-        setCurrentInventory(transformedCurrentInventory);
+        setCurrentInventory(currentInventoryResponse );
 
         // Set required inventory data
         setRequiredInventory(transformedRequiredInventory);
@@ -109,9 +102,9 @@ const ComplexTable = ({ setTodos, todos }) => {
   };
 
   const determineColor = (progress) => {
-    if (progress <= 50) {
+    if (progress <= 20) {
       return "red";
-    } else if (progress <= 90) {
+    } else if (progress <= 80) {
       return "yellow";
     } else {
       return "green";
