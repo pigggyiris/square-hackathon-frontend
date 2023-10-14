@@ -7,7 +7,7 @@ import Loading from "./Loading";
 
 const MarketingPie = () => {
   const [pieData, setPieData] = useState([]);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,10 +27,10 @@ const MarketingPie = () => {
         console.log("parsedData:", parsedData);
 
         setPieData(parsedData);
-        setLoading(false); // Set loading to false when data is received
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching marketing percentage data:", error);
-        setLoading(false); // Set loading to false on error
+        setLoading(false);
       }
     };
     fetchData();
