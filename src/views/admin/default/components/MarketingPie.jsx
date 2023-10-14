@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ReactApexChart from "react-apexcharts";
 import PieChart from "components/charts/PieChart";
 import { pieChartData, pieChartOptions } from "variables/charts";
 import Card from "components/card";
@@ -48,6 +49,35 @@ const MarketingPie = () => {
   });
   console.log("parsed percentage data:", parsedPercentageData);
 
+  const chartData = {
+    series: parsedPercentageData,
+    labels: labels,
+  };
+
+  const colors = ["#6a90a6", "#c69271", "#b4c556", "#dbd3ad", "#fcd34d","#927964"];
+
+  const chartOptions = {
+    chart: {
+      type: "pie",
+    },
+    labels: labels,
+    colors: colors,
+    tooltip: {
+      enabled: true,
+      theme: "dark",
+      style: {
+        fontSize: "12px",
+        fontFamily: undefined,
+        backgroundColor: "#000000",
+      },
+    },
+    legend: {
+      show: false, 
+    },
+  };
+
+  console.log("Series:", chartData.series);
+
   // Create a copy of pieChartOptions and set the labels
   const updatedPieChartOptions = { ...pieChartOptions };
   updatedPieChartOptions.labels = labels;
@@ -70,7 +100,11 @@ const MarketingPie = () => {
       </div>
 
       <div className="mb-auto flex h-[220px] w-full items-center justify-center">
-        <PieChart options={updatedPieChartOptions} series={parsedPercentageData} />
+        <ReactApexChart
+          options={chartOptions}
+          series={chartData.series}
+          type="pie"
+        />
       </div>
     </Card>
   );
