@@ -1,23 +1,69 @@
 import React, { useState, useEffect } from "react";
 import Card from "components/card";
-import SearchBar from "./SearchBar";
 import Progress from "components/progress";
-import { getInventoryData } from "../services/currentInventoryService";
 import fetchCurrentInventory from "../services/currentInventoryService";
 import fetchRequiredInventory from "../services/requiredInventoryService";
 import { v4 as uuidv4 } from "uuid";
-import TaskCard from "./TaskCard";
+
+import axios from "axios";
+import { BASE_URL } from "../../../../config";
 
 const ComplexTable = ({ setTodos, todos }) => {
-  const [inventory, setInventory] = useState(null);
+  const [inventory, setCurrentInventory] = useState(null);
   const [requiredInventory, setRequiredInventory] = useState(null);
+  const currentMonth = new Date().getMonth() + 1;
+
+  // Function to transform the received data
+  const transformData = (data) => {
+    return {
+      "Coffee": {
+        "Green coffee beans": data["greenCoffeeBeans"] || 0,
+        "Roasted coffee beans": data["roastedCoffeeBeans"] || 0,
+        "Ground coffee": data["groundCoffee"] || 0,
+        "Coffee filters": data["coffeeFilters"] || 0,
+      },
+      "Milk": {
+        "Whole milk": data["wholeMilk"] || 0,
+        "2% Milk": data["2%Milk"] || 0,
+      },
+      "Other Supplies": {
+        "Paper towels": data["paperTowel"] || 0,
+        "Napkins": data["napkins"] || 0,
+      },
+    };
+  };
 
   useEffect(() => {
     const fetchData = async () => {
-      const currentInventory = await fetchCurrentInventory();
-      const requiredInv = await fetchRequiredInventory();
-      setInventory(currentInventory);
-      setRequiredInventory(requiredInv);
+      try {
+        const currentInventoryResponse = await axios.get(
+          `${BASE_URL}/v1/salesInfo/inventories/${currentMonth}`
+        );
+        console.log("Current Inventory Data:", currentInventoryResponse.data);
+
+        const requiredInventoryResponse = await axios.get(
+          `${BASE_URL}/v1/salesInfo/inventories/${currentMonth}`
+        );
+        console.log("Required Inventory Data:", requiredInventoryResponse.data);
+
+        const transformedRequiredInventory=transformData(
+          requiredInventoryResponse.data
+        );
+
+        
+        const transformedCurrentInventory = transformData(
+          currentInventoryResponse.data
+        );
+        console.log("Transformed Current Inventory Data:", transformedCurrentInventory);
+        setCurrentInventory(transformedCurrentInventory);
+
+        // Set required inventory data
+        setRequiredInventory(transformedRequiredInventory);
+        console.log("Transformed Required Inventory Data:", transformedRequiredInventory);
+
+      } catch (error) {
+        console.error("Error fetching inventory data:", error);
+      }
     };
     fetchData();
   }, []);
@@ -55,14 +101,17 @@ const ComplexTable = ({ setTodos, todos }) => {
       }
     }
   }, [inventory, requiredInventory]);
+
   const calculateProgress = (current, required) => {
-    return (current / required) * 100;
+    // Ensure progress is capped at 100%
+    const progress = (current / required) * 100;
+    return progress <= 100 ? progress : 100;
   };
 
   const determineColor = (progress) => {
-    if (progress < 20) {
+    if (progress <= 50) {
       return "red";
-    } else if (progress < 80) {
+    } else if (progress <= 90) {
       return "yellow";
     } else {
       return "green";
