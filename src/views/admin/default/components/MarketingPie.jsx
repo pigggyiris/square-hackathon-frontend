@@ -13,7 +13,7 @@ const MarketingPie = () => {
     const fetchData = async () => {
       try {
         const marketingResponse = await axios.get(
-          `${BASE_URL}/v1/salesInfo/marketing_percentage_suggestion?interval=monthly`
+          `${BASE_URL}/v1/salesInfo/marketing_percentage_suggestion`
         );
 
         // Wrap the response data in square brackets if it's not an array
