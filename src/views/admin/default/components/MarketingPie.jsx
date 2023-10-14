@@ -3,9 +3,11 @@ import ReactApexChart from "react-apexcharts";
 import Card from "components/card";
 import axios from "axios";
 import { BASE_URL } from "config";
+import Loading from "./Loading";
 
 const MarketingPie = () => {
   const [pieData, setPieData] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,8 +27,10 @@ const MarketingPie = () => {
         console.log("parsedData:", parsedData);
 
         setPieData(parsedData);
+        setLoading(false); // Set loading to false when data is received
       } catch (error) {
         console.error("Error fetching marketing percentage data:", error);
+        setLoading(false); // Set loading to false on error
       }
     };
     fetchData();
@@ -84,13 +88,19 @@ const MarketingPie = () => {
         Best Marketing Ratio
       </h4>
 
-      <div className="mt-3 mb-auto flex h-[220px] w-full items-center justify-center">
-        <ReactApexChart
-          options={chartOptions}
-          series={chartData.series}
-          type="pie"
-        />
-      </div>
+      {loading ? (
+        <div className="mt-20">
+          <Loading />{" "}
+        </div>
+      ) : (
+        <div className="mb-auto mt-3 flex h-[220px] w-full items-center justify-center">
+          <ReactApexChart
+            options={chartOptions}
+            series={chartData.series}
+            type="pie"
+          />
+        </div>
+      )}
     </Card>
   );
 };
