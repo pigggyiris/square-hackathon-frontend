@@ -103,13 +103,8 @@ export const barChartOptionsDailyTraffic = {
 };
 
 export const pieChartOptions = {
-  labels: [
-    "SEO",
-    "Social Media Marketing",
-    "Marketing Campaign",
-    "Pricing Strategy",
-  ],
-  colors: ["#6a90a6", "#c69271", "#b4c556", "#dbd3ad"],
+  labels: [],
+  colors: ["#6a90a6", "#c69271", "#b4c556", "#dbd3ad", "99582a"],
   chart: {
     width: "50px",
   },
@@ -138,7 +133,7 @@ export const pieChartOptions = {
     },
   },
   fill: {
-    colors: ["#6a90a6", "#c69271", "#b4c556", "#dbd3ad"],
+    colors: ["#6a90a6", "#c69271", "#b4c556", "#dbd3ad","99582a"],
   },
   tooltip: {
     enabled: true,
