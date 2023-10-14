@@ -1,17 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "components/card";
 import flavorDefault from "assets/img/dashboards/flavorDefault.png";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import axios from "axios";
+import { BASE_URL } from "../../../../config";
 
 const TopFlavors = () => {
+  const [topFlavors, setTopFlavors] = useState([]);
+
+  useEffect(() => {
+    const currentMonth = new Date().getMonth() + 1;
+    axios
+      .get(`${BASE_URL}/v1/salesInfo/products/top_5/${currentMonth}`)
+      .then((response) => {
+        setTopFlavors(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching top flavors:", error);
+      });
+  }, []);
 
   const renderRating = (totalStars, activeStars) => {
     const stars = [];
     for (let i = 0; i < totalStars; i++) {
       if (i < activeStars) {
-        stars.push(<AiFillStar className="text-fall-600" />);
+        stars.push(<AiFillStar key={i} className="text-yellow-400" />);
       } else {
-        stars.push(<AiOutlineStar className="text-gray-300" />);
+        stars.push(<AiOutlineStar key={i} className="text-gray-300" />);
       }
     }
     return stars;
@@ -25,7 +40,7 @@ const TopFlavors = () => {
         </h2>
       </div>
       <div className="mt-5 space-y-3 px-6">
-        {[1, 2, 3, 4, 5].map((_, index) => (
+        {topFlavors.map((flavor, index) => (
           <div key={index} className="flex items-center space-x-3">
             <img
               src={flavorDefault}
@@ -33,11 +48,10 @@ const TopFlavors = () => {
               className="h-10 w-10 rounded-full"
             />
             <div className="flex flex-col justify-center">
-              {" "}
               <span className="font-medium text-navy-700 dark:text-white">
-                Mocha
+                {flavor[0]} ({flavor[1]})
               </span>
-              <div className="mt-1 flex"> {renderRating(5, 4)}</div>
+              <div className="mt-1 flex">{renderRating(5, 4)}</div>
             </div>
           </div>
         ))}
