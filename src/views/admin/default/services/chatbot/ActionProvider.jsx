@@ -1,6 +1,10 @@
 import React from "react";
+import axios from "axios";
+import { BASE_URL } from "config";
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
+  const currentMonth = new Date().getMonth() + 1;
+
   const handleHello = () => {
     const botMessage = createChatBotMessage("Hello. Nice to meet you.");
     setState((prev) => ({
@@ -9,15 +13,19 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
   };
 
-  const handleHiringPlan = () => {
-    // Call Google AI Vertex here and get the response
-    const aiResponse = "This is a placeholder for Google AI Vertex response.";
+  const handleHiringPlan = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}/v1/salesInfo/hiringSuggestion/${currentMonth}`); 
+      const aiResponse = response.data; 
 
-    const botMessage = createChatBotMessage(aiResponse);
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage],
-    }));
+      const botMessage = createChatBotMessage(aiResponse);
+      setState((prev) => ({
+        ...prev,
+        messages: [...prev.messages, botMessage],
+      }));
+    } catch (error) {
+      console.error("Error fetching hiring plan data:", error);
+    }
   };
 
   const handleSkipForThisMonth = () => {
