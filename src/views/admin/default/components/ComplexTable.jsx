@@ -160,7 +160,7 @@ const ComplexTable = ({ setTodos, todos }) => {
             </tbody>
           </table>
         ) : (
-          <div className="text-center text-fall-800 mt-15">
+          <div className="text-center text-fall-800 mt-20">
             <Loading /> 
           </div>
         )}
