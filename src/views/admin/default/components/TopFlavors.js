@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Card from "components/card";
-import flavorDefault from "assets/img/dashboards/flavorDefault.png";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import axios from "axios";
 import { BASE_URL } from "../../../../config";
+import TopFlavorsData from "./TopFlavorData";
 
 const TopFlavors = () => {
   const [topFlavors, setTopFlavors] = useState([]);
@@ -16,7 +16,7 @@ const TopFlavors = () => {
         setTopFlavors(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching top flavors:", error);
+        console.error("Error fetching data", error);
       });
   }, []);
 
@@ -40,21 +40,27 @@ const TopFlavors = () => {
         </h2>
       </div>
       <div className="mt-5 space-y-3 px-6">
-        {topFlavors.map((flavor, index) => (
-          <div key={index} className="flex items-center space-x-3">
-            <img
-              src={flavorDefault}
-              alt="Flavor"
-              className="h-10 w-10 rounded-full"
-            />
-            <div className="flex flex-col justify-center">
-              <span className="font-medium text-navy-700 dark:text-white">
-                {flavor[0]} ({flavor[1]})
-              </span>
-              <div className="mt-1 flex">{renderRating(5, 4)}</div>
+        {topFlavors.map((flavor, index) => {
+          const flavorName = flavor[0];
+          const flavorData = TopFlavorsData[flavorName];
+          return (
+            <div key={index} className="flex items-center space-x-3">
+              <img
+                src={flavorData.image}
+                alt={flavorName}
+                className="h-12 w-12 rounded-full"
+              />
+              <div className="flex flex-col justify-center">
+                <span className="font-medium text-navy-700">
+                  {flavorName} ({flavor[1]})
+                </span>
+                <div className="mt-1 flex">
+                  {renderRating(5, flavorData.rating)}
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </Card>
   );

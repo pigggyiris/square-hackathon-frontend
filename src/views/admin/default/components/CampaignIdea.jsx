@@ -31,7 +31,7 @@ const CampaignIdea = () => {
         console.log(ideas);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching campaign ideas:", error);
+        console.error("Error fetching data:", error);
         setLoading(false);
       }
     };
@@ -89,7 +89,7 @@ const CampaignIdea = () => {
               <Bubble
                 title={ideas[4]?.title || ""}
                 content={ideas[4]?.content || ""}
-                color={"bg-fiord-600"}
+                color={"bg-bone-400"}
               />
             </div>
           </div>

@@ -3,9 +3,6 @@ import React from "react";
 // Admin Imports
 import MainDashboard from "views/admin/default";
 
-// Auth Imports
-import SignIn from "views/auth/SignIn";
-
 // Icon Imports
 import {
   MdHome,
@@ -15,11 +12,7 @@ import {
   MdLock,
   MdOutlineInventory2,
   MdOutlinePeopleAlt,
-  MdLogout,
-  MdOutlineSettings,
 } from "react-icons/md";
-
-import { IconName } from "react-icons/ci";
 
 const EmptyPage = () => <div></div>;
 
