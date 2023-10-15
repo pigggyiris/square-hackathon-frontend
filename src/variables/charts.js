@@ -315,14 +315,14 @@ export const lineChartOptionsTotalSpent = (timePeriod) => ({
 
 export const lineChartDataTotalSpentStrategy = [
   {
-    name: "Revenue",
-    data: [50, 64, 48, 66, 49, 68],
-    color: "#768729",
+    name: "Our Price",
+    data: [5, 4, 4.5, 5.5, 6, 5],
+    color: "#405668",
   },
   {
-    name: "Profit",
-    data: [30, 40, 24, 46, 20, 46],
-    color: "#405668",
+    name: "Market Price",
+    data: [4, 5.5, 5, 6, 5, null],
+    color: "#96a937",
   },
 ];
 
@@ -379,7 +379,7 @@ export const lineChartOptionsTotalSpentStrategy = {
     },
     type: "text",
     range: undefined,
-    categories: ["SEP", "OCT", "NOV", "DEC", "JAN", "FEB"],
+    categories: ["MAY", "JUN", "JUL", "AUG", "SEP", "OCT"],
   },
 
   yaxis: {
