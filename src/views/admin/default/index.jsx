@@ -1,4 +1,4 @@
-import MiniCalendar from "components/calendar/MiniCalendar";
+import MiniCalendar from "views/admin/default/components/MiniCalendar";
 import Revenue from "views/admin/default/components/Revenue";
 import TopFlavors from "views/admin/default/components/TopFlavors";
 import HiringQuestion from "./components/HiringQuestion";
