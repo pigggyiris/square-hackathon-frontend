@@ -133,7 +133,7 @@ export const pieChartOptions = {
     },
   },
   fill: {
-    colors: ["#6a90a6", "#c69271", "#b4c556", "#dbd3ad","99582a"],
+    colors: ["#6a90a6", "#c69271", "#b4c556", "#dbd3ad", "99582a"],
   },
   tooltip: {
     enabled: true,
@@ -303,7 +303,7 @@ export const lineChartOptionsTotalSpent = (timePeriod) => ({
         return `${currentMonth}/${value}`;
       },
       style: {
-        colors: "#405668",
+        colors: "#A3AED0",
       },
     },
   },

@@ -30,8 +30,7 @@ const MiniCalendar = () => {
     axios
       .get(`${BASE_URL}/v1/salesInfo/social_media_plan/${month}`)
       .then((response) => {
-        const data = JSON.parse("[" + response.data + "]");
-        console.log(response.data);
+        const data = response.data;
 
         const eventMap = {};
         data.forEach((item) => {

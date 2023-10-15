@@ -17,18 +17,12 @@ const CampaignIdea = () => {
           `${BASE_URL}/v1/salesInfo/campaign_idea/${currentMonth}`
         );
 
-        let responseData = response.data
-          .replace(/```json/g, "")
-          .replace(/```/g, "")
-          .trim();
-        const campaignIdeas = JSON.parse("[" + responseData + "]").map(
-          (idea) => ({
-            title: idea.campaignTitle,
-            content: idea.campaignContent,
-          })
-        );
+        const campaignIdeas = response.data.map((idea) => ({
+          title: idea.campaignTitle,
+          content: idea.campaignContent,
+        }));
+
         setIdeas(campaignIdeas);
-        console.log(ideas);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -41,17 +35,17 @@ const CampaignIdea = () => {
 
   return (
     <Card extra="!p-[20px] text-left h-[350px]">
+      <div className="mb-4 flex justify-between">
+        <h4 className="text-xl font-bold text-gray-900 dark:text-white">
+          Campaign Idea
+        </h4>
+      </div>
       {loading ? (
         <div className="flex h-full items-center justify-center">
           <Loading />
         </div>
       ) : (
         <>
-          <div className="mb-4 flex justify-between">
-            <h4 className="text-xl font-bold text-gray-900 dark:text-white">
-              Campaign Idea
-            </h4>
-          </div>
           <div className="grid grid-rows-2 gap-2">
             <div className="grid grid-cols-4 gap-2">
               <div className="col-span-2">
@@ -89,7 +83,7 @@ const CampaignIdea = () => {
               <Bubble
                 title={ideas[4]?.title || ""}
                 content={ideas[4]?.content || ""}
-                color={"bg-bone-400"}
+                color={"bg-bone-500"}
               />
             </div>
           </div>
