@@ -22,13 +22,7 @@ export const PricingStrategyTable = () => {
 
   useEffect(() => {
     axios.get(`${BASE_URL}/v1/salesInfo/pricing_strategy`).then((response) => {
-      let responseData = response.data
-        .replace(/```json/g, "")
-        .replace(/```/g, "")
-        .trim();
-
-      const parsedData = JSON.parse("[" + responseData + "]")[0];
-      const { marketPrice, percentage: fetchedPercentage } = parsedData;
+      const { marketPrice, percentage: fetchedPercentage } = response.data;
 
       const updatedData = [...lineChartData];
       updatedData[1].data[5] = marketPrice;
