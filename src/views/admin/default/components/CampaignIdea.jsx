@@ -12,9 +12,8 @@ const CampaignIdea = () => {
   useEffect(() => {
     const fetchIdeas = async () => {
       try {
-        const currentMonth = new Date().getMonth() + 1;
         const response = await axios.get(
-          `${BASE_URL}/v1/salesInfo/campaign_idea/${currentMonth}`
+          `${BASE_URL}/v1/salesInfo/campaign_idea/10`
         );
 
         const campaignIdeas = response.data.map((idea) => ({

@@ -18,17 +18,14 @@ const Revenue = () => {
   const [dailyQuantity, setDailyQuantity] = useState([]);
   const [hourlyQuantity, setHourlyQuantity] = useState([]);
 
-  const currentMonth = new Date().getMonth() + 1;
-
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/v1/salesInfo/sales_report_monthly/${currentMonth}`)
+      .get(`${BASE_URL}/v1/salesInfo/sales_report_monthly/10`)
       .then((response) => {
         const dailyQuantities = response.data.salesReportbyDay.map(
           (dayData) => dayData.totalQuantity
         );
-        const todayData =
-          response.data.salesReportbyDay[new Date().getDate() - 1];
+        const todayData = response.data.salesReportbyDay[6];
         const hourlyQuantities = todayData
           ? todayData.salesReportbyHour.map(
               (hourData) => hourData.totalQuantity
@@ -43,8 +40,7 @@ const Revenue = () => {
       });
   }, []);
 
-  const todayDate = new Date().getDate(); // 当天是一个月中的哪一天
-  const displayedQuantity = dailyQuantity.slice(0, todayDate);
+  const displayedQuantity = dailyQuantity.slice(0, 15);
   const dataForChart =
     selectedTimePeriod === "Daily" ? hourlyQuantity : displayedQuantity;
 

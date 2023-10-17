@@ -28,7 +28,7 @@ const Dashboard = () => {
     dailyRevenue: 0,
   });
 
-  const currentMonth = new Date().getMonth() + 1;
+  const currentMonth = 10;
   useEffect(() => {
     axios
       .get(`${BASE_URL}/v1/salesInfo/sales_report_monthly/${currentMonth}`)
@@ -38,7 +38,7 @@ const Dashboard = () => {
 
         const currentDate = new Date();
         const currentDay = currentDate.getDate();
-        const todayData = response.data.salesReportbyDay[currentDay - 1];
+        const todayData = response.data.salesReportbyDay[6];
         const dailyRevenue = todayData ? todayData.totalRevenue : 0;
 
         setData({

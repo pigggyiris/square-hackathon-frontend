@@ -6,13 +6,7 @@ import Loading from "./Loading";
 
 const getNextMonth = () => {
   let today = new Date();
-  let nextMonth = today.getMonth() + 1;
-  let year = today.getFullYear();
-  if (nextMonth > 11) {
-    nextMonth = 0;
-    year += 1;
-  }
-  return { month: nextMonth, year };
+  return { month: 10, year: today.getFullYear() };
 };
 
 const daysInMonth = (month, year) => new Date(year, month + 1, 0).getDate();
@@ -28,7 +22,7 @@ const MiniCalendar = () => {
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}/v1/salesInfo/social_media_plan/${month}`)
+      .get(`${BASE_URL}/v1/salesInfo/social_media_plan/10`)
       .then((response) => {
         const data = response.data;
 
