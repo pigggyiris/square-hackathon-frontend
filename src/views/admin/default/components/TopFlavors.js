@@ -9,7 +9,7 @@ const TopFlavors = () => {
   const [topFlavors, setTopFlavors] = useState([]);
 
   useEffect(() => {
-    const currentMonth = new Date().getMonth() + 1;
+    const currentMonth = 10;
     axios
       .get(`${BASE_URL}/v1/salesInfo/products/top_5/${currentMonth}`)
       .then((response) => {
