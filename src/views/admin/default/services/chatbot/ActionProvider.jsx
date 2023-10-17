@@ -3,7 +3,8 @@ import axios from "axios";
 import { BASE_URL } from "config";
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
-  const currentMonth = new Date().getMonth() + 1;
+  const currentMonth = 10;
+  console.log("month:", currentMonth);
 
   const handleHello = () => {
     const botMessage = createChatBotMessage("Hello. Nice to meet you.");

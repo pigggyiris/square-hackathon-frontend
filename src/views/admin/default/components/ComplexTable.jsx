@@ -12,7 +12,7 @@ import { BASE_URL } from "../../../../config";
 const ComplexTable = ({ setTodos, todos }) => {
   const [inventory, setCurrentInventory] = useState(null);
   const [requiredInventory, setRequiredInventory] = useState(null);
-  const currentMonth = new Date().getMonth() + 1;
+  const currentMonth = 10;
 
   const transformData = (data) => {
     return {
